@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../store/AuthContext';
-import { BookOpen, KeyRound, Mail, UserCircle, User } from 'lucide-react';
+import { BookOpen, KeyRound, Mail, User } from 'lucide-react'; // Removed UserCircle
 
 const Register = () => {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
         password: '',
-        role: 'student'
+        role: 'student' // Hardcoded to student
     });
     const [isLoading, setIsLoading] = useState(false);
     const [errorMsg, setErrorMsg] = useState('');
@@ -24,6 +24,7 @@ const Register = () => {
         setIsLoading(true);
         setErrorMsg('');
 
+        // Submits with 'student' role by default
         const result = await register(formData.role, formData.email, formData.password, formData.name);
 
         if (!result.success) {
@@ -55,21 +56,7 @@ const Register = () => {
                 )}
 
                 <form onSubmit={handleSubmit}>
-                    <div className="input-group">
-                        <label>Register As</label>
-                        <div style={{ position: 'relative' }}>
-                            <UserCircle size={18} style={{ position: 'absolute', left: '12px', top: '14px', color: 'var(--text-muted)' }} />
-                            <select
-                                name="role"
-                                value={formData.role}
-                                onChange={handleChange}
-                                style={{ paddingLeft: '2.5rem' }}
-                            >
-                                <option value="student">Student</option>
-                                <option value="administrator">Administrator</option>
-                            </select>
-                        </div>
-                    </div>
+                    {/* Role selection dropdown has been removed */}
 
                     <div className="input-group">
                         <label>Full Name</label>

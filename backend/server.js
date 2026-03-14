@@ -1,6 +1,8 @@
+const dotenv = require('dotenv');
+dotenv.config();
+
 const express = require('express');
 const cors = require('cors');
-const dotenv = require('dotenv');
 const connectDB = require('./src/config/db');
 
 // Route imports
@@ -10,16 +12,13 @@ const bookRoutes = require('./src/routes/bookRoutes');
 const courseRoutes = require('./src/routes/courseRoutes');
 const borrowRoutes = require('./src/routes/borrowRoutes');
 
-// Load env vars
-dotenv.config();
-
 // Connect to database
 connectDB();
 
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({ origin: '*' }));
 app.use(express.json());
 
 // Main Routes

@@ -1,4 +1,5 @@
 const User = require('../models/User');
+const { sendStatusEmail } = require('../utils/mailer');
 
 // @desc    Get all users (students)
 // @route   GET /api/users
@@ -70,11 +71,22 @@ const updateUser = async (req, res) => {
         }
 
         // Use findByIdAndUpdate to bypass the pre-save hook (avoids re-hashing)
+        const prevStatus = user.status;
         const updatedUser = await User.findByIdAndUpdate(
             req.params.id,
             { $set: updateFields },
             { new: true, runValidators: false }
         ).select('-password');
+
+        // Send status-change email to the student (non-blocking)
+        if (updateFields.status && updateFields.status !== prevStatus) {
+            let action = updateFields.status; // 'Active' or 'Suspended'
+            // If going from Suspended -> Active, it's a reactivation
+            if (updateFields.status === 'Active' && prevStatus === 'Suspended') {
+                action = 'Reactivated';
+            }
+            sendStatusEmail({ name: updatedUser.name, email: updatedUser.email }, action);
+        }
 
         res.status(200).json({
             _id: updatedUser.id,
@@ -98,6 +110,9 @@ const deleteUser = async (req, res) => {
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
         }
+
+        // Send deletion email before removing (non-blocking)
+        sendStatusEmail({ name: user.name, email: user.email }, 'Deleted');
 
         await user.deleteOne();
 
