@@ -55,16 +55,26 @@ const updateUser = async (req, res) => {
             return res.status(404).json({ message: 'User not found' });
         }
 
+        // Build the fields to update (only what was sent)
+        const updateFields = {};
+        if (req.body.name !== undefined)   updateFields.name = req.body.name;
+        if (req.body.email !== undefined)  updateFields.email = req.body.email;
+        if (req.body.role !== undefined)   updateFields.role = req.body.role;
+        if (req.body.status !== undefined) updateFields.status = req.body.status;
+
+        // Handle password change separately so we can hash it
         if (req.body.password) {
-            user.password = req.body.password;
+            const bcrypt = require('bcryptjs');
+            const salt = await bcrypt.genSalt(10);
+            updateFields.password = await bcrypt.hash(req.body.password, salt);
         }
 
-        user.name = req.body.name || user.name;
-        user.email = req.body.email || user.email;
-        user.role = req.body.role || user.role;
-        user.status = req.body.status || user.status;
-
-        const updatedUser = await user.save();
+        // Use findByIdAndUpdate to bypass the pre-save hook (avoids re-hashing)
+        const updatedUser = await User.findByIdAndUpdate(
+            req.params.id,
+            { $set: updateFields },
+            { new: true, runValidators: false }
+        ).select('-password');
 
         res.status(200).json({
             _id: updatedUser.id,
