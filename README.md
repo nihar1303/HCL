@@ -1,71 +1,55 @@
-📚 Smart Library Management System
+📚 Smart Library Management System:
 
-🚀 A Full-Stack Library Management Platform built for the HCL Hackathon that allows students to browse books, borrow them, and register for courses while enabling administrators to manage books, students, and course data efficiently.
+A Full-Stack Library Management Platform built for the HCL Hackathon that allows students to browse books, borrow them, and register for courses while enabling administrators to manage books, students, and course data efficiently.
 
 The platform provides a secure role-based system where students interact with library resources and administrators manage the entire system.
 
-👥 Team
+👥 Team:
 
 Team Name: Xero
+Members: 
+1. Sakshi
+2. Thapliyal Nihar Deepakbhai 
+3. Sheyash Bankar
+4. Jabez Sam Sundar
 
-Members
-
-Sakshi
-
-Nihar
-
-Sheyash
-
-🧠 Project Overview
+🧠 Project Overview:
 
 Managing library operations manually can be inefficient and difficult to scale. Our system digitizes the entire workflow by providing a centralized platform where:
 
-Students can explore available books and borrow them.
-
-Students can register for academic courses.
-
-Admins can manage books, students, and courses.
-
-Borrow records are automatically maintained.
+1. Students can explore available books and borrow them.
+2. Students can register for academic courses.
+3. Admins can manage books, students, and courses.
+4. Borrow records are automatically maintained.
 
 The system is built using modern full-stack technologies to ensure scalability, security, and maintainability.
 
-⚙️ Tech Stack
-Frontend
+⚙️ Tech Stack: 
 
-React
+Frontend :
+1. React
+2. Vite
+3. HTML
+4. CSS
+5. JavaScript
 
-Vite
+Backend:
+1. Node.js
+2. Express.js
 
-HTML
+Database:
+1. MongoDB
+2. Mongoose
 
-CSS
-
-JavaScript
-
-Backend
-
-Node.js
-
-Express.js
-
-Database
-
-MongoDB
-
-Mongoose
-
-Authentication
-
+Authentication:
 JSON Web Token (JWT)
 
-Additional Tools
+Additional Tools:
+1. MongoDB Memory Server (for local testing)
+2. REST APIs
 
-MongoDB Memory Server (for local testing)
+🏗️ System Architecture:
 
-REST APIs
-
-🏗️ System Architecture
 Frontend (React + Vite)
         │
         │ REST API Requests
@@ -78,8 +62,10 @@ MongoDB Database
 
 The React frontend communicates with the Node.js backend via REST APIs, and the backend stores and retrieves data from MongoDB using Mongoose.
 
-📂 Project Structure
-Backend
+📂 Project Structure: 
+
+Backend:
+
 backend
 │
 ├── config
@@ -111,7 +97,9 @@ backend
 ├── seed.js
 ├── server.js
 └── package.json
-Frontend
+
+Frontend: 
+
 frontend
 │
 ├── public
@@ -154,48 +142,36 @@ frontend
 │   ├── App.jsx
 │   ├── main.jsx
 │   └── index.css
-✨ Features
-👨‍🎓 Student Features
 
-User registration and login
+✨ Features:
 
-Browse available books
+👨‍🎓 Student Features:
 
-Borrow books
+1. User registration and login
+2. Browse available books
+3. Borrow books
+4. View borrowed books
+5. Course registration
+6. Student dashboard
 
-View borrowed books
+👨‍💼 Admin Features:
 
-Course registration
+1. Admin dashboard
+2. Add, update, or delete books
+3. Manage courses
+4. Manage students
+5. Track borrowed books
 
-Student dashboard
-
-👨‍💼 Admin Features
-
-Admin dashboard
-
-Add, update, or delete books
-
-Manage courses
-
-Manage students
-
-Track borrowed books
-
-🔐 Authentication & Security
+🔐 Authentication & Security:
 
 The system uses JWT (JSON Web Token) based authentication for secure access control.
 
-Authentication Flow
-
-User registers or logs in.
-
-Server validates credentials.
-
-A JWT token is generated and sent to the client.
-
-Client stores the token.
-
-Token is sent in request headers for protected routes.
+Authentication Flow:
+1. User registers or logs in.
+2. Server validates credentials.
+3. A JWT token is generated and sent to the client.
+4. Client stores the token.
+5. Token is sent in request headers for protected routes.
 
 Example request header:
 
@@ -204,14 +180,11 @@ Authorization: Bearer <JWT_TOKEN>
 The authMiddleware verifies the token before allowing access to protected routes.
 
 This ensures:
+1. Secure authentication
+2. Role-based access (Admin / Student)
+3. Protected APIs
 
-Secure authentication
-
-Role-based access (Admin / Student)
-
-Protected APIs
-
-🗄️ Database Configuration
+🗄️ Database Configuration:
 
 The application uses MongoDB as the database.
 
@@ -243,86 +216,70 @@ const connectDB = async () => {
 };
 
 module.exports = connectDB;
-🚀 Installation & Setup
-1️⃣ Clone the Repository
+
+🚀 Installation & Setup:
+
+1. Clone the Repository:
 git clone https://github.com/nihar1303/HCL.git
 cd HCL
-Backend Setup
 
+2. Backend Setup:
+   
 Navigate to backend directory
-
 cd backend
 
 Install dependencies
-
 npm install
 
 Start backend server
-
 npm start
-Frontend Setup
+
+3. Frontend Setup:
 
 Navigate to frontend directory
-
 cd frontend
 
 Install dependencies
-
 npm install
 
 Run development server
-
 npm run dev
 
 Frontend will run at:
-
 http://localhost:5173
-🔗 API Modules
+
+🔗 API Modules:
 
 The backend exposes REST APIs for:
 
-Authentication
-
-Books
-
-Borrow Records
-
-Courses
-
-Users
-
+1. Authentication
+2. Books
+3. Borrow Records
+4. Courses
+5. Users
 Each module follows a clean MVC architecture.
 
-📈 Future Improvements
+📈 Future Improvements:
 
-Email reminders for book due dates
+1. Email reminders for book due dates
+2. Book recommendation system
+3. Advanced analytics dashboard
+4. Docker containerization
+5. CI/CD pipeline integration
+6. Cloud deployment
 
-Book recommendation system
-
-Advanced analytics dashboard
-
-Docker containerization
-
-CI/CD pipeline integration
-
-Cloud deployment
-
-🏆 Hackathon Goal
+🏆 Hackathon Goal:
 
 This project demonstrates:
 
-Full-stack application development
-
-Secure authentication using JWT
-
-REST API architecture
-
-Database integration with MongoDB
-
-Scalable project structure
+1. Full-stack application development
+2. Secure authentication using JWT
+3. REST API architecture
+4. Database integration with MongoDB
+5. Scalable project structure
 
 It aims to simplify library and course management systems for educational institutions.
 
-📜 License
+📜 License:
 
 This project is created for educational and hackathon purposes.
